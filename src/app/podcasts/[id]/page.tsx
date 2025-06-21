@@ -12,7 +12,7 @@ import Loading from '@/app/loading';
 export default function PodcastPage({ params }: { params: Promise<{ id: string }> }) {
   try {
 
-    const [podcast, setPodcast] = useState<PodcastDetails | null>()
+    const [podcast, setPodcast] = useState<PodcastDetails | null | false>()
 
     useEffect(() => {
       async function fetchPodcast() {
@@ -23,13 +23,17 @@ export default function PodcastPage({ params }: { params: Promise<{ id: string }
           setPodcast(podcast)
         }
         catch (error) {
-
+          console.error('Failed to fetch podcast:', error);
+          setPodcast(false);
         }
       }
 
       fetchPodcast()
     }, [params])
 
+    if (podcast == false) {
+      return <h3>Error fetching.</h3>
+    }
     if (!podcast) {
       return <Loading />
     }
