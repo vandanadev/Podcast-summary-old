@@ -49,6 +49,7 @@ export async function POST(request: Request) {
     return Response.json({ saved });
 
   } catch (error) {
+    console.error("gemini error",error);
     
     return Response.json({ error: "Failed to summarize" }, { status: 500 });
   }
