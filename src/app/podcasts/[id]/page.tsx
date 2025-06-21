@@ -1,12 +1,4 @@
 import { getPodcastById } from '@/lib/podcast-api';
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/registry/new-york-v4/ui/breadcrumb"
 import { PodcastInfo } from '@/components/podcasts/PodcastInfo';
 import { EpisodeCard } from '@/components/podcasts/EpisodeCard';
 import Link from 'next/link';
@@ -19,20 +11,6 @@ export default async function PodcastPage({ params }: { params: Promise<{ id: st
 
     return (
       <div className="container mx-auto py-8">
-        <Breadcrumb>
-          <BreadcrumbList>
-            <BreadcrumbItem>
-              <BreadcrumbLink asChild>
-                <Link href="/">Home</Link>
-              </BreadcrumbLink>
-            </BreadcrumbItem>
-            <BreadcrumbSeparator />
-            <BreadcrumbItem>
-              <BreadcrumbPage>{podcast.title}</BreadcrumbPage>
-            </BreadcrumbItem>
-          </BreadcrumbList>
-        </Breadcrumb>
-
         <div className="mt-8 grid gap-8 md:grid-cols-3">
           <div className="md:col-span-1">
             <PodcastInfo podcast={podcast} />

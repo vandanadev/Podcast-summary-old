@@ -77,6 +77,7 @@ export interface Episode {
     explicit_content: boolean;
     maybe_audio_invalid: boolean;
     listennotes_edit_url: string;
+    podcast: Podcast;
 }
 
 export interface PodcastDetails extends Podcast {
