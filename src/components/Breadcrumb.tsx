@@ -11,8 +11,8 @@ import {
     BreadcrumbSeparator,
 } from '@/registry/new-york-v4/ui/breadcrumb';
 import { useEffect, useState } from 'react';
-import { getEpisodeById, getPodcastById } from '@/lib/podcast-api';
 import { Episode, PodcastDetails } from '@/types/podcast';
+import { getEpisodeByIdClient, getPodcastByIdClient } from '@/lib/client-podcast-api';
 
 const Breadcrumbs = () => {
     const pathname = usePathname();
@@ -26,13 +26,13 @@ const Breadcrumbs = () => {
             const pathParts = pathname.split('/').filter(Boolean);
 
             if (pathParts[0] === 'podcasts' && pathParts[1]) {
-                const podcastData = await getPodcastById(pathParts[1]);
+                const podcastData = await getPodcastByIdClient(pathParts[1]);
                 setPodcast(podcastData);
             } else if (pathParts[0] === 'episode' && pathParts[1]) {
-                const episodeData = await getEpisodeById(pathParts[1]);
+                const episodeData = await getEpisodeByIdClient(pathParts[1]);
                 setEpisode(episodeData);
                 if (episodeData.podcast) {
-                    const podcastData = await getPodcastById(episodeData.podcast.id);
+                    const podcastData = await getPodcastByIdClient(episodeData.podcast.id);
                     setPodcast(podcastData);
                 }
             }

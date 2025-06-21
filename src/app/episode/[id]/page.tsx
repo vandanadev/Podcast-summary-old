@@ -1,11 +1,11 @@
 'use client'
 
 import { use, useEffect, useState } from 'react';
-import { getEpisodeById } from "@/lib/podcast-api";
 import { Card, CardContent, CardHeader, CardTitle } from "@/registry/new-york-v4/ui/card";
 import Loading from '@/app/loading';
 import { Episode } from '@/types/podcast';
 import Image from 'next/image';
+import { getEpisodeByIdClient } from '@/lib/client-podcast-api';
 
 export default function EpisodePage({ params }: { params: Promise<{ id: string }> }) {
 	const [summary, setSummary] = useState<string | null>(null);
@@ -18,7 +18,7 @@ export default function EpisodePage({ params }: { params: Promise<{ id: string }
 		const fetchData = async () => {
 			try {
 				setLoading(true);
-				const episodeData = await getEpisodeById(id);
+				const episodeData = await getEpisodeByIdClient(id);
 				setEpisode(episodeData);
 
 				const summaryRes = await fetch(`/api/summarize/${id}`);
