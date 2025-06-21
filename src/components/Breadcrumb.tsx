@@ -45,18 +45,18 @@ const Breadcrumbs = () => {
         const pathParts = pathname.split('/').filter(Boolean);
 
         return (
-            <Breadcrumb className="mb-4">
-                <BreadcrumbList>
+            <Breadcrumb className="mb-3 sm:mb-4">
+                <BreadcrumbList className="text-sm sm:text-base">
                     <BreadcrumbItem>
                         <BreadcrumbLink asChild>
-                            <Link href="/">Home</Link>
+                            <Link href="/" className="hover:text-primary transition-colors">Home</Link>
                         </BreadcrumbLink>
                     </BreadcrumbItem>
                     {pathParts.length > 0 && <BreadcrumbSeparator />}
 
                     {podcast && pathParts[0] === 'podcasts' && (
                         <BreadcrumbItem>
-                            <BreadcrumbPage>{podcast.title}</BreadcrumbPage>
+                            <BreadcrumbPage className="line-clamp-1 max-w-[200px] sm:max-w-none">{podcast.title}</BreadcrumbPage>
                         </BreadcrumbItem>
                     )}
 
@@ -64,12 +64,12 @@ const Breadcrumbs = () => {
                         <>
                             <BreadcrumbItem>
                                 <BreadcrumbLink asChild>
-                                    <Link href={`/podcasts/${podcast.id}`}>{podcast.title}</Link>
+                                    <Link href={`/podcasts/${podcast.id}`} className="hover:text-primary transition-colors line-clamp-1 max-w-[150px] sm:max-w-none">{podcast.title}</Link>
                                 </BreadcrumbLink>
                             </BreadcrumbItem>
                             <BreadcrumbSeparator />
                             <BreadcrumbItem>
-                                <BreadcrumbPage>{episode.title}</BreadcrumbPage>
+                                <BreadcrumbPage className="line-clamp-1 max-w-[200px] sm:max-w-none">{episode.title}</BreadcrumbPage>
                             </BreadcrumbItem>
                         </>
                     )}
@@ -82,7 +82,7 @@ const Breadcrumbs = () => {
         return null;
     }
 
-    return <div className="container mx-auto py-4">{renderBreadcrumbs()}</div>;
+    return <div className="container mx-auto py-2 sm:py-4 px-4 sm:px-6 lg:px-8">{renderBreadcrumbs()}</div>;
 };
 
 export default Breadcrumbs; 

@@ -24,3 +24,29 @@ export const generatePagination = (currentPage: number, totalPages: number): (st
 
     return [1, '...', currentPage - 1, currentPage, currentPage + 1, '...', totalPages];
 };
+
+export function formatDuration(seconds: number): string {
+  if (isNaN(seconds) || seconds < 0) {
+    return '';
+  }
+
+  const hours = Math.floor(seconds / 3600);
+  const minutes = Math.floor((seconds % 3600) / 60);
+
+  if (hours > 0) {
+    const remainingMinutes = minutes > 0 ? ` ${minutes} min` : '';
+    return `${hours} hr${remainingMinutes}`;
+  }
+  if (minutes > 0) {
+    return `${minutes} min`;
+  }
+  return 'Less than a minute';
+}
+
+export function formatDate(timestampMs: number): string {
+    return new Date(timestampMs).toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+    });
+}

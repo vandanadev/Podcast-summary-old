@@ -197,3 +197,40 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer utilities {
+  /* Responsive line clamp utilities */
+  .line-clamp-1 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+  }
+  
+  .line-clamp-2 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+  
+  .line-clamp-3 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+  }
+
+  /* Ensure proper scrolling on mobile */
+  .container {
+    @apply w-full mx-auto;
+  }
+
+  /* Better touch targets for mobile */
+  @media (max-width: 640px) {
+    button, a[role="button"] {
+      min-height: 44px;
+      min-width: 44px;
+    }
+  }
+}
